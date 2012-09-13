@@ -1,0 +1,25 @@
+$def with (user, tags, posts)
+
+$if user == 'admin':
+	<div id="nav-bar">
+	<ul>
+	<li id="navbar-blog"><a href="/add">添加</a><a href="/share">共享</a><a href="/logout">退出</a></li>
+	</ul>
+	</div>
+<div id="content">
+$if posts:
+    <p>标签</p>
+    $for i in tags:
+        <a href="/tag/$i.tag">$i.tag</a>
+    <table width="100%"><tr><th width="240px">名称</th><th width="130px">地址</th><th width="70px">用户名</th><th width="70px">密码</th><th width="180px">更新时间</th>
+    $if user == 'admin':
+        <th>操作</th></tr>
+    $for i in posts:
+        <tr><td>$i.name</td><td>$i.address</td><td>$i.username</td><td>$i.password</td><td>$i.updated</td>
+        $if user == 'admin':
+            <td><a href="/view/$i.id">查看</a> <a href="/edit/$i.id">编辑</a> <a href="/delete/$i.id" onclick="javascript: return confirm('是否要删除？')">删除</a></td>
+        </tr>
+    </table>
+$else:
+    <p>没有任何记录。</p>
+</div>

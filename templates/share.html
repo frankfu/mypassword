@@ -1,0 +1,12 @@
+$def with (form, t)
+<div id="content">
+$if t == 'success':
+	<p>发送成功</P>
+$elif t == 'failure':
+	<p>发送失败</P>
+$else:
+	<p>发送共享请求邮件，通过认证可获得有效访问期一个月</p>
+	<form method="POST">
+	    $:form.render()
+	</form>
+</div>
